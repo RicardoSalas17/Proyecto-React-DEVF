@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.bodyCards{
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.cardContainer {
+  box-sizing: border-box;
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: space-between;
+  justify-content: space-evenly;
+  flex-direction: row;
+  color: #f6f2e8;
+}
+
+.cardContainer h1 {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 1), 0px -2px 0px rgba(255, 255, 255, 0.8),
+    0 -4px 15px rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
