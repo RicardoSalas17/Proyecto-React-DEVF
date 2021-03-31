@@ -7,11 +7,11 @@ export default function SearchForm(callback, defaults){
     const handleInputs = (event) => {
         console.log("event",event)
         console.log("inputs",event)
-      /*  setInputs(
+        setInputs(
             {
             ...inputs,
           // [event.target.id]:event.target.value
-        });*/
+        });
     };
 
     const handleSubmit = (event) => {
