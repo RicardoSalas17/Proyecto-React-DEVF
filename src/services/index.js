@@ -19,6 +19,13 @@ const MY_SERVICE = {
   login: async (user) => {
     return await service.post('/api/v1/login', user);
   },
+  logout:()=>{
+    localStorage.clear()
+  },
+  getUser: async () => { 
+    await service.get('/api/v1/me');
+  }
+  
 
 //   getUser: () => {
 //     return service.get('/api/v1/user')

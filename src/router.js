@@ -4,6 +4,7 @@ import Navbar from './components/styled-components/Navbar'
 import Home from './components/home/Home';
 import SignUp from './components/signup/Signup';
 import Login from './components/login/Login';
+import Car from './components/car/Car';
 import ProductDetail from './components/product/ProductDetail'
 
 const Router = () => (
@@ -14,6 +15,8 @@ const Router = () => (
         <Route exact path="/signup" component={SignUp}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/product/:id" component={ProductDetail} />
+        <Route exact path="/car" component={Car} />
+
 
       </Switch>
     </BrowserRouter>

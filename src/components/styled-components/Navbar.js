@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
 import { MyContext } from '../../context'
 import SearchInput from '../SearchInput/Search'
+import MY_SERVICE from '../../services/index.js';
 
 
 const StyledNavbar = styled.nav`
@@ -26,7 +27,6 @@ background: rgba(0, 0, 0, 0.863) !important;
 `
 
 function Navbar(props) {
-
   return (
     <MyContext.Consumer>
       {context => {
@@ -36,12 +36,33 @@ function Navbar(props) {
             <NavLink exact to="/" activeClassName="navbar-active">
               Home
             </NavLink>
-            <NavLink exact to="/signup" activeClassName="navbar-active">
+            {!window.localStorage.token && (              
+              <NavLink exact to="/signup" activeClassName="navbar-active">
               SignUp
             </NavLink>
-            <NavLink exact to="/login" activeClassName="navbar-active">
-              LogIn
-            </NavLink> 
+            )}
+            {!window.localStorage.token && (
+              <NavLink exact to="/login" activeClassName="navbar-active">
+                Login
+              </NavLink>
+            )}
+
+              
+              
+            {window.localStorage.token && (
+              <NavLink exact to="/car" activeClassName="navbar-active">
+                car
+              </NavLink>
+            )}
+
+
+            {window.localStorage.token && (
+              <NavLink exact to="/" activeClassName="navbar-active" onClick={MY_SERVICE.logout}>
+                LogOut
+              </NavLink>
+            )}
+
+
           </StyledNavbar>
         )
       }}

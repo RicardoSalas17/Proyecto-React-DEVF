@@ -7,20 +7,22 @@ import { useState } from 'react';
 
 export default function useForm(callback, defaults){
     const [inputs, setInputs] = useState(defaults);
+    
 
     const handleInputs = (event) => {
         setInputs({
             ...inputs,
-           [event.target.id]:event.target.value
+           [event.target.name]:event.target.value
         });
+        //console.log(event.target.value)
         // recibir el evento 
-        // cambiar el valor de la propiedad
+        // cambiar esl valor de la propiedad
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        //console.log(inputs);
-        console.log(callback);
+        //console.log(inputs);s
+        //console.log(callback);
         callback(inputs);
     }
 
