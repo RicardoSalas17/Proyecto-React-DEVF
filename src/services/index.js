@@ -10,6 +10,9 @@ const MY_SERVICE = {
   getAllItems: async () => {
     return await service.get('/api/v1/item');
   },
+  getItem: async (id) => {
+    return await service.get(`/api/v1/item/${id}`);
+  },
   signup: async (user) => {
     return await service.post('/api/v1/signup', user);
   },
