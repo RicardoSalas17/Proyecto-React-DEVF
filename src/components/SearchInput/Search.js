@@ -1,37 +1,37 @@
 import { Component } from 'react';
+
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import SearchForm from '../../hooks/SearchForm';
 
-class SearchInput extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchWord: ""
-        };
-    }
-    render() {
-        return (
-        <div className="search-container">
-            <input
-                type="text"
-                placeholder="Buscar en todos los gifs"
-                className="search-input"
-                value={this.state.searchWord}
-                onChange={(evento) => {
-                    console.log(evento.target.value)
-                    this.setState({searchWord: evento.target.value});
-                }}
-            />
-            <button
-                className="search-button"
-                onClick={() => {
-                    this.props.SearchForm(this.state.searchWord);
-                }}
-            >
-                Buscar
-            </button>
-        </div>
-        );
-    }
+function SearchInput () {
+    
+  const history = useHistory();
+  const [palabra, setPalabra] = useState("");
+
+  const buscador = () => {
+    palabra.toLocaleLowerCase();
+    palabra.length === 0
+      ? history.push("/")
+      : history.push(`/search/${palabra}`);
+  };
+
+  return (
+    <div className="d-flex">
+      <input
+        className="form-control mr-2"
+        type="search"
+        placeholder="Search"
+        onChange={(e) => {
+          console.log(e.target.value);
+          setPalabra(e.target.value.toLocaleLowerCase());
+        }}
+      />
+      <button className="btn btn-outline-primary" onClick={buscador}>
+        Buscar
+      </button>
+    </div>
+  );
 }
 
 export default SearchInput;

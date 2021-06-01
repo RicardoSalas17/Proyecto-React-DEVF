@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 
-
 export default function SearchForm(callback, defaults){
     const [inputs, setInputs] = useState(defaults);
     const handleInputs = (event) => {

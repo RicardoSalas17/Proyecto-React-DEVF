@@ -11,9 +11,8 @@ export default function Login() {
             .then(({data, status})=>{
                 console.log(status);
                 const { token } = data;
-                window.localStorage.setItem('token', token);
-                console.log(typeof(window.localStorage.token)!=='undefined')
-                history.push('/');
+                window.localStorage.setItem("token", token);
+                history.push('/profile');
             })
             .catch(error => {
                 console.error(error.response.data);

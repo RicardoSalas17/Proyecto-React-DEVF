@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
 import { MyContext } from '../../context'
@@ -26,7 +26,11 @@ background: rgba(0, 0, 0, 0.863) !important;
 `
 
 function Navbar(props) {
-
+  const token = window.localStorage.getItem("token");
+  const Logout = () => {
+    window.localStorage.removeItem("token");
+    return <Redirect to="/" />;
+  };
   return (
     <MyContext.Consumer>
       {context => {
@@ -36,12 +40,27 @@ function Navbar(props) {
             <NavLink exact to="/" activeClassName="navbar-active">
               Home
             </NavLink>
+
+            {!token &&(
             <NavLink exact to="/signup" activeClassName="navbar-active">
               SignUp
-            </NavLink>
+            </NavLink> )
+          }
+
+          {!token &&(
             <NavLink exact to="/login" activeClassName="navbar-active">
               LogIn
-            </NavLink> 
+            </NavLink>)}
+
+            {token &&(
+              <NavLink exact to="/profile" activeClassName="navbar-active">
+                Profile
+              </NavLink>)}
+            {token &&(
+              <NavLink exact to="/" activeClassName="navbar-active" onClick={Logout}>
+                LogOut
+              </NavLink>)}
+
           </StyledNavbar>
         )
       }}

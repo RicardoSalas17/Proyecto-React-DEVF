@@ -20,9 +20,9 @@ const MY_SERVICE = {
     return await service.post('/api/v1/login', user);
   },
 
-//   getUser: () => {
-//     return service.get('/api/v1/user')
-//   },
+   getUser: () => {
+     return service.get('/api/v1/user/me')
+   },
 }
 
 export default MY_SERVICE;
