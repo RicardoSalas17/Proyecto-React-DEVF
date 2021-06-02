@@ -25,10 +25,10 @@ class MyProvider extends Component {
     let objetoCreado = this.state.allProducts.filter(function (objetoDelArray) {
         return objetoDelArray.product_name.includes(stringBuscado);
     });
-   if( stringBuscado == ""){
+   if( stringBuscado === ""){
      this.chargeAllProducts() 
-   }  else if(objetoCreado ==[]){
-    this.setState({showList:["none"]})}
+   }  else if(objetoCreado.length===0){
+    this.setState({showList:"vacio"})}
   else{
     this.setState({showList:objetoCreado})
   }

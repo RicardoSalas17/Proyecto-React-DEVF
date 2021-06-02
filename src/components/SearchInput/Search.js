@@ -1,17 +1,13 @@
-import { Component } from 'react';
 import { MyContext } from '../../context'
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import SearchForm from '../../hooks/SearchForm';
+import { Link} from 'react-router-dom'
+
 
 function SearchInput () {
-  
-  //const history = useHistory();
+
   const [palabra, setPalabra] = useState("");
   
-  const buscador = () => {
-    palabra.toLocaleLowerCase()
-  };
+
   
   return (
     <MyContext.Consumer>
@@ -25,9 +21,9 @@ function SearchInput () {
           setPalabra(e.target.value.toLocaleLowerCase());
         }}
       />
-      <button className="btn btn-outline-primary"  onClick={e=>context.search(palabra)}>
+      <Link to="/" className="btn btn-outline-primary"  onClick={e=>context.search(palabra)}>
         Buscar
-      </button>
+      </Link>
     </div>
   )}
 

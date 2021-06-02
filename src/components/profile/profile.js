@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import MY_SERVICE from '../../services/index.js'
-import Card from '../styled-components/CardStyled'
-import { Link} from 'react-router-dom'
 import payload from "../../utils/payloads";
 import axios from "axios";
 
