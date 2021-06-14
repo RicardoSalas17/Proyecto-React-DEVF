@@ -1,87 +1,68 @@
-import Card from '../styled-components/CardStyled'
+//import Card from '../styled-components/CardStyled'
+
+
+import { Card, Row, Container, Col } from 'react-bootstrap';
 import { Link} from 'react-router-dom'
 import { MyContext } from '../../context'
 
-function Home(props) {
 
-//  const [products, setProducts]=useState([]);
-
-  const token = window.localStorage.getItem("token");
-
-
- 
+function Home() {
   return (
     <MyContext.Consumer>
 {context =>(
-
-  <div>
   
+  <Container class="home">
     {
-
- /* if (context.showList.length =< 0){
-  <h1>Cargando</h1>
-} else if(context.showList ==["none"]){
-
-  <h1>no hay nada...</h1>
-}else {
-  context.showList.map((prod)=>(
-    <Card key={prod._id}>
-    <h1>{prod.product_name}</h1>
-    <Link to={`/product/${prod._id}`}>
-    <img src={prod.image} alt={prod.product_name} width="60%" height="60%"/>
-    </Link> 
-    <Link to= {token ?`/profile` :"/signup"}>
-    <p>${prod.price}</p>
-    </Link>
-    </Card>
-))
-}*/
-
 context.showList.length <= 0?
-<h1>Cargando...</h1>
+<h1>cargando</h1>
 : 
 context.showList==="vacio"? 
 <div>
 <h1>no hay nada...</h1>
 <button onClick={e=>context.search("")}>atras</button>
 </div>
-:
-<div className="container">
-<div className="bodyCards">
-<div className="cardContainer">
-{context.showList.map((prod)=>(  
-  <Card key={prod._id}>
-  <h3>{prod.product_name}</h3>
-  <Link to={`/product/${prod._id}`}>
-  <img src={prod.image} alt={prod.product_name} width="60%" height="60%"/>
-  <p>${prod.price}</p>
-  </Link> 
-  <Link to= {token ?`/profile` :"/signup"}>
-  <p>Agregar al carrito</p>
-  </Link>
-  </Card>
-  ))}
-  </div>
-  </div>
-  </div>
-  
 
-       
-      
-  
-  
+:
+
+
+<Row>
+
+{context.showList.map((prod)=>(  
+
+  <Col>
+<Card style={{ width: '18rem' }} key={prod.id}>
+  {
+
+    prod.hasOwnProperty("image") && (prod.image.includes("jpg")|| prod.image.includes("jpeg")||prod.image.includes("png"))? 
+    <img variant="top" src={prod.image} className="cardImage" alt={prod.image}/>
+    :   
+    <Card.Img variant="top" src="https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg" />
+  }
+  <Card.Body>
+    <Card.Title>{prod.product_name}</Card.Title>
+    <Card.Text>
+      {prod.description}
+    </Card.Text>
+    <Link to={`/product/${prod._id}`} style={{ textDecoration: 'none', color: '#d9d9d9', backgroundColor:"black"}}>
+  Details</Link>
+  <button onClick={()=>context.addProduct(prod)}>
+  Agrgar producto al carrito
+  </button>
+  </Card.Body>
+</Card>
+</Col>
+
+))}
+</Row>
+
+
+
+
 }
-</div>
+</Container>
     )}
     </MyContext.Consumer>
   );
 }
 
 export default Home;
-// {context.user.car.includes(prod)=== false?
-//   <button onClick= {()=>{
-// context.user.car.push(prod)
-// }}> add product
-//   </button>:
-//   <h1>{mensaje}</h1>
-//   }

@@ -1,26 +1,28 @@
 import React, { Component, createContext } from 'react'
 import MY_SERVICE from './services/index'
+import payload from "./utils/payloads";
 export const MyContext = createContext()
 
 class MyProvider extends Component {
 
     state={
       user:{
-        car:[]},
+       },
         allProducts:[],
-        showList:[]
-
+        showList:[],
+        car:[]
       }
 
 
   componentDidMount(){
      this.chargeAllProducts()
+     this.handleUser()
+     
+    }
 
   
-  }
   
   search = (word) =>{
-
     let stringBuscado= word
     let objetoCreado = this.state.allProducts.filter(function (objetoDelArray) {
         return objetoDelArray.product_name.includes(stringBuscado);
@@ -43,12 +45,36 @@ class MyProvider extends Component {
      })
      .catch(err => console.log(err))
   }
+  
+  handleUser=()=>{
+    const token = window.localStorage.getItem("token");
+    let idUser = undefined;
+      if (token !== null) {
+        const user2 = payload();
+        idUser = user2.id;
+        const config = {
+          headers: {
+            Authorization: `JWT ${token}`,
+          },
+        };
 
-/*  chargeShowProducts=()=>{
-
-  }*/
-
-
+         const obtenerUser = async () => {
+          await MY_SERVICE.getUser(idUser, config).then((res) => {
+            console.log(res.data)
+          this.setState({user:res.data})
+        })
+      }
+      obtenerUser()
+    }
+  }
+  addProduct=(prod)=>{
+    let intialList = [this.state.car]
+    let finalList =intialList.push(prod)
+    console.log(prod,"prod")
+    console.log(intialList,"initial")
+console.log(finalList,"final")
+this.setState({car:finalList})
+  }
 
     render() {
         return (
@@ -57,7 +83,10 @@ class MyProvider extends Component {
                 showList: this.state.showList,
                 allProducts: this.state.allProducts,
                 user: this.state.user,
-                search:this.search
+                car: this.state.car,
+                search:this.search,
+                handleUser:this.handleUser,
+                addProduct:this.addProduct
               }}
             >
               {this.props.children}

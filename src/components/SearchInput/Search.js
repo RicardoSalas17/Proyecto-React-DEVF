@@ -12,16 +12,16 @@ function SearchInput () {
   return (
     <MyContext.Consumer>
     {context =>(
-    <div className="d-flex">
+    <div >
       <input
-        className="form-control mr-2"
+        className="searchInput"
         type="search"
         placeholder="Search"
         onChange={(e) => {
           setPalabra(e.target.value.toLocaleLowerCase());
         }}
       />
-      <Link to="/" className="btn btn-outline-primary"  onClick={e=>context.search(palabra)}>
+      <Link to="/" className="btnSearch"  onClick={e=>context.search(palabra)} >
         Buscar
       </Link>
     </div>

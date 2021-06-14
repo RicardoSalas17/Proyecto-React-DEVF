@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #141414;
+
 }
 
 code {
@@ -27,7 +30,8 @@ code {
   align-items: space-between;
   justify-content: space-evenly;
   flex-direction: row;
-  color: #f6f2e8;
+ color: #f6f2e8;
+  
 }
 
 .cardContainer h3 {
@@ -43,3 +47,60 @@ code {
 .container{
   margin-top: 5%;
 }
+.cards{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+margin:10px;
+border-radius: 5px;
+width: 300 ;
+height:300;
+background-color: #595959;
+ border:2px solid #4f4646;
+  border-radius:5px;
+  margin:"10px"
+
+}
+.cardContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.cards{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards Link{
+  color: black;
+  text-decoration:none;
+}
+
+.cardImage{
+  border-radius: 50px;
+  height: 80%;
+  width: 70%;
+}
+.btnSearch{
+  background-color: #434343;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.searchInput{
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  height: 7vh;
+
+  
+}
+
+/*
+.card meta{
+  color: black;
+
+}*/

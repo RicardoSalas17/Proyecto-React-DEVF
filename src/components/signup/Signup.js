@@ -1,7 +1,7 @@
 // import React from "react";
 // import React, { useEffect, useState } from 'react'
 
-
+import { Form, Input, Button, Checkbox } from 'antd';
 import React from 'react';
 import useForm from '../../hooks/UseForm.js';
 import { useHistory } from "react-router-dom";
@@ -35,6 +35,19 @@ export default function SignUp() {
 
     return(
         <div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
         <form onSubmit={handleSubmit}>
             <div className="container my-4">
             <div className="row">

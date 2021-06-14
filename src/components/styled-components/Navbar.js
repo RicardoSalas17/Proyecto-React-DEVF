@@ -4,24 +4,29 @@ import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
 import { MyContext } from '../../context'
 import SearchInput from '../SearchInput/Search'
+import { Layout, Menu, Breadcrumb } from 'antd';
+import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 
+const { SubMenu } = Menu;
+const { Header, Content, Sider } = Layout;
 
 const StyledNavbar = styled.nav`
 background: rgba(0, 0, 0, 0.863) !important;
   width: 100vw;
-  height: 7vh;
+  height: 10vh;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 10px;
   box-sizing: border-box;
   & a {
-    padding: 5px;
-    color: white;
+    padding: 15px;
+    color: #d9d9d9;
     text-decoration: none;
+    backgroundColor:"#8c8c8c"
   }
   & a.navbar-active {
-    color: #0f4c81;
+    color: #8c8c8c;
   }
 `
 
@@ -35,8 +40,12 @@ function Navbar(props) {
     <MyContext.Consumer>
       {context => {
         return (
+
+
+          
           <StyledNavbar>
-          <SearchInput></SearchInput>
+
+          
             <NavLink exact to="/" activeClassName="navbar-active">
               Home
             </NavLink>
@@ -60,6 +69,7 @@ function Navbar(props) {
               <NavLink exact to="/" activeClassName="navbar-active" onClick={Logout}>
                 LogOut
               </NavLink>)}
+              <SearchInput></SearchInput>
 
           </StyledNavbar>
         )
