@@ -20,7 +20,6 @@ function ProductDetail(props) {
     });
 
   if(!product){
-
         return (
             <div className="App">
               <img
@@ -29,8 +28,6 @@ function ProductDetail(props) {
               />
             </div>
           )
-    
-
   }else {
     return (
         <div className="bodyCards">
@@ -40,10 +37,10 @@ function ProductDetail(props) {
     </Row>
      
       <Row label={product.product_name}></Row>
-      <Row label={product.product_name}></Row>
-      <Row label={product.product_name}></Row>
+      <Row label={product.description}></Row>
+      <Row label={product.category}></Row>
+      <Row label={product.price}></Row>
     </CardDetail>
-
   </div>
     )
 

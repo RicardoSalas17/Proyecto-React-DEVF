@@ -17,8 +17,8 @@ context.user.hasOwnProperty("first_name")===false ? <h1>cargando</h1>:
         }
 
         {
-          console.log( context.car)
-          /*
+          //console.log( context.car)
+          
           context.car.length===0  ? 
           <h1>No tienes elementos en tu carrito</h1> :
           context.car.map((prod)=>(  
@@ -43,8 +43,7 @@ context.user.hasOwnProperty("first_name")===false ? <h1>cargando</h1>:
         </Card>
         </Col>
         )
-        
-        )*/
+        )
          }
           </div>
     )

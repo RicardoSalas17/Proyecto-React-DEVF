@@ -68,12 +68,12 @@ class MyProvider extends Component {
     }
   }
   addProduct=(prod)=>{
-    let intialList = [this.state.car]
-    let finalList =intialList.push(prod)
-    console.log(prod,"prod")
-    console.log(intialList,"initial")
-console.log(finalList,"final")
-this.setState({car:finalList})
+    //let intialList = [this.state.car]
+    //let finalList =intialList.push(prod)
+    let joined= this.state.car.concat(prod);
+    this.setState({ car: joined })
+
+//this.setState({car:finalList})
   }
 
     render() {
