@@ -13,8 +13,6 @@ export default function Login() {
         MY_SERVICE.login(inputs)
 
             .then(({data, status})=>{
-                console.log(status);
-
                 const { token } = data;
                 window.localStorage.setItem("token", token);
                 history.push('/profile');
@@ -24,20 +22,14 @@ export default function Login() {
                 console.log(typeof(window.localStorage.token)!=='undefined')
             })
     };
-
-
+    
     const {
         inputs,
         handleInputs,
         handleSubmit,
     } = useForm(sendForm, {});
 
-
-
-
     return(
-
-
         <MyContext.Consumer>
         {context =>(
         <div>
@@ -63,7 +55,6 @@ export default function Login() {
             </div>
         </form>
         </div>
-
         )}
         </MyContext.Consumer>
     );

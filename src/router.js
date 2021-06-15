@@ -6,6 +6,8 @@ import SignUp from './components/signup/Signup';
 import Login from './components/login/Login';
 import Profile from './components/profile/profile';
 import ProductDetail from './components/product/ProductDetail'
+import AddProduct from './components/addProduct/AddProduct'
+
 
 const Router = () => (
     <BrowserRouter>
@@ -16,9 +18,8 @@ const Router = () => (
         <Route exact path="/login" component={Login}/>
         <Route exact path="/profile" component={Profile}/>
         <Route exact path="/product/:id" component={ProductDetail} />
-        <Route exact path="/search/:itemsSearch" comonent={Home}>
-      </Route>
-
+        <Route exact path="/search/:itemsSearch" comonent={Home}/>
+        <Route exact path="/addproduct" comonent={AddProduct}/>
       </Switch>
     </BrowserRouter>
   );

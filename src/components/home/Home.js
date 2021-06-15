@@ -1,6 +1,3 @@
-//import Card from '../styled-components/CardStyled'
-
-
 import { Card, Row, Container, Col } from 'react-bootstrap';
 import { Link} from 'react-router-dom'
 import { MyContext } from '../../context'
@@ -9,8 +6,7 @@ import { MyContext } from '../../context'
 function Home() {
   return (
     <MyContext.Consumer>
-{context =>(
-  
+{context =>(  
   <Container class="home">
     {
 context.showList.length <= 0?
@@ -21,12 +17,8 @@ context.showList==="vacio"?
 <h1>no hay nada...</h1>
 <button onClick={e=>context.search("")}>atras</button>
 </div>
-
 :
-
-
 <Row>
-
 {context.showList.map((prod)=>(  
 
   <Col>
@@ -34,7 +26,7 @@ context.showList==="vacio"?
   {
 
     prod.hasOwnProperty("image") && (prod.image.includes("jpg")|| prod.image.includes("jpeg")||prod.image.includes("png"))? 
-    <img variant="top" src={prod.image} className="cardImage" alt={prod.image}/>
+    <img variant="top" src={prod.image} className="cardImage" alt={prod.id}/>
     :   
     <Card.Img variant="top" src="https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg" />
   }
@@ -54,10 +46,6 @@ context.showList==="vacio"?
 
 ))}
 </Row>
-
-
-
-
 }
 </Container>
     )}

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
-
 import MY_SERVICE from '../../services/index.js'
 import CardDetail from '../styled-components/CardDetail'
 import Row from '../styled-components/Row'
-
-
 
 function ProductDetail(props) {
     const [product, setProduct]=useState([]);
@@ -18,7 +15,6 @@ function ProductDetail(props) {
     useEffect(() => {
       dataProduct()
     });
-
   if(!product){
         return (
             <div className="App">
@@ -35,18 +31,14 @@ function ProductDetail(props) {
     <Row>
     <img src={product.image} alt={product.product_name} width="100vw" height="40vh"/>
     </Row>
-     
       <Row label={product.product_name}></Row>
       <Row label={product.description}></Row>
       <Row label={product.category}></Row>
-      <Row label={product.price}></Row>
+      <Row label={`$ ${product.price}`}></Row>
     </CardDetail>
   </div>
     )
-
-  }
-        
-    
+  }    
 }
 
-export default ProductDetail
+export default ProductDetail;

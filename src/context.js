@@ -4,8 +4,7 @@ import payload from "./utils/payloads";
 export const MyContext = createContext()
 
 class MyProvider extends Component {
-
-    state={
+  state={
       user:{
        },
         allProducts:[],
@@ -13,15 +12,11 @@ class MyProvider extends Component {
         car:[]
       }
 
-
   componentDidMount(){
      this.chargeAllProducts()
      this.handleUser()
-     
-    }
+       }
 
-  
-  
   search = (word) =>{
     let stringBuscado= word
     let objetoCreado = this.state.allProducts.filter(function (objetoDelArray) {
@@ -34,16 +29,15 @@ class MyProvider extends Component {
   else{
     this.setState({showList:objetoCreado})
   }
-
   }
 
   chargeAllProducts=()=>{ 
     MY_SERVICE.getAllItems()
     .then(( {data} ) => {
-      this.setState({allProducts:data})
-      this.setState({showList:data})
+      this.setState({allProducts:data});
+      this.setState({showList:data});
      })
-     .catch(err => console.log(err))
+     .catch(err => console.log(err));
   }
   
   handleUser=()=>{
@@ -57,23 +51,18 @@ class MyProvider extends Component {
             Authorization: `JWT ${token}`,
           },
         };
-
          const obtenerUser = async () => {
           await MY_SERVICE.getUser(idUser, config).then((res) => {
-            console.log(res.data)
           this.setState({user:res.data})
         })
       }
       obtenerUser()
     }
   }
-  addProduct=(prod)=>{
-    //let intialList = [this.state.car]
-    //let finalList =intialList.push(prod)
-    let joined= this.state.car.concat(prod);
-    this.setState({ car: joined })
 
-//this.setState({car:finalList})
+  addProduct=(prod)=>{
+    let joined= this.state.car.concat(prod)
+    this.setState({ car: joined })
   }
 
     render() {
@@ -93,4 +82,4 @@ class MyProvider extends Component {
             </MyContext.Provider>)
 }
 }
-export default MyProvider
+export default MyProvider;

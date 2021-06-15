@@ -1,13 +1,9 @@
-// import React from "react";
-// import React, { useEffect, useState } from 'react'
-
-//import { Form, Input, Button, Checkbox } from 'antd';
 import React from 'react';
 import useForm from '../../hooks/UseForm.js';
 import { useHistory } from "react-router-dom";
 import MY_SERVICE from '../../services/index.js';
 
-export default function SignUp() {
+export default function AddProduct() {
     const history = useHistory();
     const sendForm = (inputs) => {
         console.log('Ejecuté sendForm2Elregresodelosformsasesino', inputs);
@@ -27,8 +23,6 @@ export default function SignUp() {
         }
     };
     
-
-
     const {
         inputs,
         handleInputs,

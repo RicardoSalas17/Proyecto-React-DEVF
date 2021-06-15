@@ -30,8 +30,7 @@ code {
   align-items: space-between;
   justify-content: space-evenly;
   flex-direction: row;
- color: #f6f2e8;
-  
+ color: #f6f2e8; 
 }
 
 .cardContainer h3 {
@@ -99,8 +98,6 @@ background-color: #595959;
   
 }
 
-/*
-.card meta{
-  color: black;
-
-}*/
+h1{
+  color:white
+}
