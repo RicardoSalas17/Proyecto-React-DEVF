@@ -10,10 +10,10 @@ context.user.hasOwnProperty("first_name")===false ? <h1>cargando</h1>:
           <h1 >Hola {context.user.first_name}. {context.user.last_name} </h1>
           <h1>Tu email es: {context.user.email} </h1>
           
-          {context.user.role === "COSTUMER" ?
+          {context.user.role === "CUSTOMER" ?
           <div>
           <h1>Your role is:</h1>
-          <h1>COSTUMER </h1>                  
+          <h1>{context.user.role} </h1>                  
           </div>
           :
           <div>

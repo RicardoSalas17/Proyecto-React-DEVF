@@ -37,21 +37,14 @@ else{
 
 }
   }
-
-
   return(
     <MyContext.Consumer>
 {context => {
-
 cntxData = context.user.car
-
-
 return(
   <div className="bodyCards">
   <div className="cardContainer">
-
   {
-    
   productsCar.map((prod)=>(
       <Card key={prod._id}>
       <h1>{prod.product_name}</h1>
@@ -61,9 +54,7 @@ return(
       <button onClick={checkAuth}>ddd</button>
       </Card>
   ))
-  }
-
-    
+  }    
   </div>
   </div>
 )

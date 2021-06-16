@@ -1,88 +1,178 @@
-import React from 'react';
-import useForm from '../../hooks/UseForm.js';
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import MY_SERVICE from '../../services/index.js';
+import { useHistory } from "react-router-dom";
+import useForm from "../../hooks/UseForm";
+import { FormGroup, Label, Input } from "reactstrap";
 
-export default function AddProduct() {
-    const history = useHistory();
-    const sendForm = (inputs) => {
-        console.log('Ejecuté sendForm2Elregresodelosformsasesino', inputs);
-        console.log(inputs)
-        if(inputs.password === inputs.password_confirmation) {
-            delete inputs.password_confirmation;
-            MY_SERVICE.signup(inputs)
-                .then(({data, status}) => {
-                    console.log(data, status);
-                    history.push('/');
-                })
-                .catch(error => {
-                    console.error(error.response.data);
-                })
-        } else {
-            alert('Las contraseñas no coinciden');
-        }
+function AddProduct() {
+  const history = useHistory();
+  const [mensaje] = useState();
+
+  const sendForm = (inputs) => {
+    const token = window.localStorage.getItem("token");
+    const skuGenerator = (length) => {
+      let result = "";
+      let characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
+      return result;
     };
-    
-    const {
-        inputs,
-        handleInputs,
-        handleSubmit,
-    } = useForm(sendForm, {});
 
-    return(
-        <div>
+    if (token) {
+      const skuValue = skuGenerator(24);
+      inputs = { ...inputs, sku: skuValue };
+      const config = {
+        headers: {
+          Authorization: `JWT ${token}`,
+        },
+      };
+
+      MY_SERVICE.createProduct(inputs,config)
+        .then(({ data, status }) => {
+          console.log(data, status);
+          history.push("/");
+        })
+        .catch((error) => {
+          console.error(error.response.data);
+        });
+    }
+  };
+
+  const { inputs, handleInputs, handleSubmit } = useForm(sendForm, {});
+  return (
+    <div className="signup-container">
+      <div className="signup-content">
+        <h2 className="texto-bienvenida">Crear un nuevo producto</h2>
+        <p className="text-validacion">{mensaje}</p>
         <form onSubmit={handleSubmit}>
-            <div className="container my-4">
-            <div className="row">
-            <div  className="col-7 mt-3">
-                <div className="input-group flex-nowrap">
-                <span className="input-group-text" id="addon-wrapping">@</span>
-                <input type="text" required value={inputs.email} onChange={handleInputs} className="form-control" id="email" placeholder="Email" aria-label="email" aria-describedby="addon-wrapping"/>
-                </div>
-            </div>
-            <div  className="col-7 mt-3">
-                <div className="input-group flex-nowrap">
-                <span className="input-group-text" id="addon-wrapping">@</span>
-                <input type="text" required value={inputs.first_name} onChange={handleInputs} className="form-control" id="first_name" placeholder="Nombre" aria-label="first_name" aria-describedby="addon-wrapping"/>
-                </div>
-            </div>
-            
-            <div  className="col-7 mt-3">
-            <div className="input-group flex-nowrap">
-            <span className="input-group-text" id="addon-wrapping">@</span>
-            <input type="text" required value={inputs.last_name} onChange={handleInputs} className="form-control" id="last_name" placeholder="Apellido" aria-label="last_name" aria-describedby="addon-wrapping"/>
-            </div>
-        </div>
-            <div  className="col-7 mt-3">
-                <div className="input-group flex-nowrap">
-                <span className="input-group-text" id="addon-wrapping">@</span>
-                <input type="password" required value={inputs.password} onChange={handleInputs} className="form-control" id="password" placeholder="Contraseña" aria-label="password" aria-describedby="addon-wrapping"/>
-                </div>
-            </div>
-            <div  className="col-7 mt-3">
-                <div className="input-group flex-nowrap">
-                <span className="input-group-text" id="addon-wrapping">@</span>
-                <input type="password" required value={inputs.password_confirmation} onChange={handleInputs} className="form-control" id="password_confirmation" placeholder="Confirmación de contraseña" aria-label="password_confirmation" aria-describedby="addon-wrapping"/>
-                </div>
-            </div>
-            <div  className="col-7 mt-3">
-            <select
-            mode="multiple"
-            placeholder="Role"
-            id="role"
-            style={{ width: '100%' }}
-            onChange={handleInputs}
+          <FormGroup>
+            <Label for="product_name"> Nombre del producto</Label>
+            <Input
+              type="text"
+              required
+              value={inputs.product_name}
+              onChange={handleInputs}
+              className="form-control"
+              id="product_name"
+              name="product_name"
+              placeholder="Nombre del producto"
+              aria-label="product_name"
+              aria-describedby="addon-wrapping"
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <Label for="description"> Descripción del producto</Label>
+            <Input
+              type="text"
+              required
+              value={inputs.description}
+              onChange={handleInputs}
+              className="form-control"
+              id="description"
+              placeholder="Descripción"
+              aria-label="description"
+              aria-describedby="addon-wrapping"
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <Label for="price"> Precio</Label>
+            <Input
+              type="number"
+              required
+              value={inputs.price}
+              onChange={handleInputs}
+              className="form-control"
+              id="price"
+              placeholder="Precio"
+              aria-label="price"
+              aria-describedby="addon-wrapping"
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <Label for="category">Categoría</Label>
+            <Input
+              type="select"
+              required
+              value={inputs.category}
+              onChange={handleInputs}
+              className="form-control"
+              id="category"
+              placeholder="Categoría"
+              aria-label="category"
+              aria-describedby="addon-wrapping"
+            >
+              <option>Books</option>
+              <option>Movies</option>
+              <option>Music</option>
+              <option>Games</option>
+              <option>Electronics</option>
+              <option>Computers</option>
+              <option>Home</option>
+              <option>Garden</option>
+              <option>Tools</option>
+              <option>Grocery</option>
+              <option>Health</option>
+              <option>Beauty</option>
+              <option>Toys</option>
+              <option>Kids</option>
+              <option>Baby</option>
+              <option>Clothing</option>
+              <option>Shoes</option>
+              <option>Jewelery</option>
+              <option>Sports</option>
+              <option>Outdoors</option>
+              <option>Automotive</option>
+              <option>Industrial</option>
+            </Input>
+          </FormGroup>
+
+          <FormGroup>
+            <Label for="brand">Marca del producto</Label>
+            <Input
+              type="brand"
+              required
+              value={inputs.brand}
+              onChange={handleInputs}
+              className="form-control"
+              id="brand"
+              placeholder="Marca"
+              aria-label="brand"
+              aria-describedby="addon-wrapping"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="image">Imágen</Label>
+            <Input
+              type="text"
+              required
+              value={inputs.image}
+              onChange={handleInputs}
+              className="form-control"
+              id="image"
+              placeholder="URL de imágen"
+              aria-label="image"
+              aria-describedby="addon-wrapping"
+            />
+          </FormGroup>
+
+          <div
+          // className="col-6 mt-4"
           >
-          <option value="ADMIN" key= "ADMIN" > ADMIN</option> 
-          <option value="COSTUMER" key= "COSTUMER" > COSTUMER</option> 
-          </select>
-          </div> 
-            <div className="col-6 mt-4">
-                <button type="submit" className="btn btn-info">Crear Cuenta</button>
-            </div>
-            </div>
-        </div>
+            <button type="submit" className="btn btn-primary sign-up-btn">
+              Crear Product
+            </button>
+          </div>
         </form>
-        </div>
-    )
+      </div>
+    </div>
+  );
 }
+export default AddProduct;

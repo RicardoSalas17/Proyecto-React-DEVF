@@ -7,7 +7,7 @@ function Home() {
   return (
     <MyContext.Consumer>
 {context =>(  
-  <Container class="home">
+  <Container className="home">
     {
 context.showList.length <= 0?
 <h1>cargando</h1>
@@ -24,7 +24,6 @@ context.showList==="vacio"?
   <Col>
 <Card style={{ width: '18rem' }} key={prod.id}>
   {
-
     prod.hasOwnProperty("image") && (prod.image.includes("jpg")|| prod.image.includes("jpeg")||prod.image.includes("png"))? 
     <img variant="top" src={prod.image} className="cardImage" alt={prod.id}/>
     :   

@@ -23,6 +23,11 @@ const MY_SERVICE = {
    getUser: (idUser,config) => {
      return service.get(`user/${idUser}`, config)
    },
+
+   createProduct: async (inputs,config) => {
+    return await service.post(`item`, inputs, config)
+  },
+   
 }
 
 export default MY_SERVICE;
